@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_app_teste/pages/login.dart';
-import 'package:my_app_teste/pages/minha_primeira_pagina.dart';
 
 void main() {
   runApp(const MyApp());
