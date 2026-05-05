@@ -12,6 +12,7 @@ class MinhaPrimeiraPagina extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 28, 28, 28),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
