@@ -12,9 +12,8 @@ class RegistrarUsuarioService {
       try {
       final response = await 
       dio.post(ConstantsApi.baseUrl 
-      + ConstantsApi.porta + 
-      ConstantsApi.baseApi +
-      ConstantsApi.urlRegistrarUsuario, data: {
+      + ConstantsApi.porta
+      + ConstantsApi.urlRegistrarUsuario, data: {
         "name": name,
         "email": email,
         "password": password

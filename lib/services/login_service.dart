@@ -11,18 +11,20 @@ class LoginService {
       try {
       final response = await 
       dio.post(ConstantsApi.baseUrl 
-      + ConstantsApi.porta + 
-      ConstantsApi.baseApi +
-      ConstantsApi.urlLogin, data: {
-        "email": email,
-        "password": password
+      + ConstantsApi.porta 
+      + ConstantsApi.urlLogin, data: {
+        "login": email,
+        "senha": password
       });
       return ResponseLogin.fromJson(response.data);
       } on DioException catch (e) {
         print("Antes de mostrar o erro");
         print(e);
+        if (e.response == null) {
+          return ResponseLogin(message: "Não foi possível conectar ao servidor.");
+        }
         if(e.response!.statusCode == 400) {
-          return 
+          return
           ResponseLogin(message: e.response!.data['message']);
         } else if(e.response!.statusCode == 500) {
           return ResponseLogin(message: "Erro inesperado do servidor!");

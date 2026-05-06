@@ -5,8 +5,9 @@ class ResponseLogin {
   String? message;
   String? error;
   int? statusCode;
+  String? detail;
 
-  ResponseLogin({this.token, this.tokenType, this.expiresIn, this.message, this.error, this.statusCode});
+  ResponseLogin({this.token, this.tokenType, this.expiresIn, this.message, this.error, this.statusCode, this.detail});
 
   ResponseLogin.fromJson(Map<String, dynamic> json) {
     token = json['token'];
@@ -15,6 +16,7 @@ class ResponseLogin {
     message = json['message'];
     error = json['error'];
     statusCode = json['statusCode'];
+    detail = json['detail'];
   }
 
   Map<String, dynamic> toJson() {
@@ -25,6 +27,7 @@ class ResponseLogin {
     data['message'] = this.message;
     data['error'] = this.error;
     data['statusCode'] = this.statusCode;
+    data['detail'] = this.detail;
     return data;
   }
 }

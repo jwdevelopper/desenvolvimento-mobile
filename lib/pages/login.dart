@@ -64,247 +64,198 @@ class _LoginPageState extends State<LoginPage>
           child: Container(
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color.fromARGB(255, 12, 2, 61),
-                  const Color.fromARGB(255, 42, 3, 142),
-                  Color.fromARGB(255, 2, 27, 139),
-                  const Color.fromARGB(255, 13, 11, 151),
-                ],
-                begin: AlignmentGeometry.topCenter,
-                end: AlignmentGeometry.bottomCenter,
+              image: DecorationImage(
+                image: AssetImage("assets/img/login_bg.jpg"),
+                fit: BoxFit.cover,
               ),
             ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 10.0,
-                          offset: Offset(0, 5),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/img/logo_mascot.png",
+                          height: 175.0,
+                          width: 175.0,
                         ),
-                      ],
-                    ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/img/logo_v1.png",
-                            height: 175.0,
-                            width: 175.0,
-                          ),
-                          SizedBox(height: 20.0),
-                          TextFormField(
-                            controller: _emailControler,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                                borderSide: BorderSide(
-                                  color: const Color.fromARGB(
-                                    255,
-                                    119,
-                                    119,
-                                    119,
-                                  ),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
-                                  color: Colors.lightBlueAccent,
-                                ),
-                              ),
-                              labelText: "E-mail",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              prefixIcon: IconButton(
-                                onPressed: () {},
-                                icon: FaIcon(
-                                  FontAwesomeIcons.user,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  _emailControler.clear();
-                                },
-                                icon: FaIcon(
-                                  FontAwesomeIcons.xmark,
-                                  color: Colors.black45,
-                                ),
+                        SizedBox(height: 20.0),
+                        Text("GulaPay!", style: 
+                        TextStyle(
+                          fontSize: 38.0,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          color: Color(0xFFE6D3B3)
+                        ),),
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          controller: _emailControler,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFE6D3B3),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 211, 161, 74),
                               ),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Informe o e-mail";
-                              } else if (!value.contains('@')) {
-                                return "Informe um e-mail válido!";
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 20.0),
-                          TextFormField(
-                            controller: _senhaControler,
-                            obscureText: _obscureText,
-                            decoration: InputDecoration(
-                              labelText: "Senha",
-                              border: OutlineInputBorder(),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                                borderSide: BorderSide(
-                                  color: const Color.fromARGB(
-                                    255,
-                                    119,
-                                    119,
-                                    119,
-                                  ),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                borderSide: BorderSide(
-                                  color: Colors.lightBlueAccent,
-                                ),
-                              ),
-                              prefixIcon: IconButton(
-                                onPressed: () {},
-                                icon: FaIcon(FontAwesomeIcons.lock),
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                icon: FaIcon(
-                                  _obscureText
-                                      ? FontAwesomeIcons.eyeSlash
-                                      : FontAwesomeIcons.eye,
-                                ),
+                            hintText: "E-mail",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            prefixIcon: IconButton(
+                              onPressed: () {},
+                              icon: FaIcon(
+                                FontAwesomeIcons.user,
+                                color: Color.fromARGB(255, 99, 88, 70),
                               ),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Informe a senha";
-                              } else if (value.length < 6) {
-                                return "A senha deve conter mais de 5 digitos!";
-                              }
-                              return null;
-                            },
-                          ),
-                          SizedBox(height: 20.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RegistrarUsuario(),
-                                    ),
-                                  );
-                                },
-                                child: Text(
-                                  "Não Possuí Cadastro? Clique Aqui!",
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.blueAccent,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                _emailControler.clear();
+                              },
+                              icon: FaIcon(
+                                FontAwesomeIcons.xmark,
+                                color: Color.fromARGB(255, 99, 88, 70),
                               ),
-                            ],
+                            ),
                           ),
-                          SizedBox(height: 20.0),
-                          SizedBox(
-                            height: 40.0,
-                            width: double.infinity,
-                            child: ElevatedButton.icon(
-                              onPressed: _isLoading
-                                  ? null
-                                  : () async {
-                                      if (!_formKey.currentState!.validate()) {
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Informe o e-mail";
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20.0),
+                        TextFormField(
+                          controller: _senhaControler,
+                          obscureText: _obscureText,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFE6D3B3),
+                            labelText: "Senha",
+                            border: OutlineInputBorder(),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 211, 161, 74),
+                              ),
+                            ),
+                            prefixIcon: IconButton(
+                              onPressed: () {},
+                              icon: FaIcon(FontAwesomeIcons.lock),
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              icon: FaIcon(
+                                _obscureText
+                                    ? FontAwesomeIcons.eyeSlash
+                                    : FontAwesomeIcons.eye,
+                              ),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Informe a senha";
+                            } else if (value.length < 6) {
+                              return "A senha deve conter mais de 5 digitos!";
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20.0),
+                        SizedBox(
+                          height: 60.0,
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            onPressed: _isLoading
+                                ? null
+                                : () async {
+                                    if (!_formKey.currentState!.validate()) {
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            "Por favor verifique o formulário!",
+                                          ),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    } else {
+                                      setState(() {
+                                        _isLoading = true;
+                                      });
+                                      print(_emailControler.text);
+                                      print(_senhaControler.text);
+                                      var response = await _loginService
+                                          .efetuarLogin(
+                                            _emailControler.text,
+                                            _senhaControler.text,
+                                          );
+                                      if ((response.message == null || response.message!.isEmpty) && (response.detail == null || response.detail!.isEmpty)) {
                                         ScaffoldMessenger.of(
                                           context,
                                         ).showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              "Por favor verifique o formulário!",
+                                              "Login realizado com sucesso!",
+                                            ),
+                                            backgroundColor: Colors.green,
+                                          ),
+                                        );
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Home(),
+                                          ),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              "Erro ao efetuar login: ${response.message ?? response.detail}",
                                             ),
                                             backgroundColor: Colors.red,
                                           ),
                                         );
-                                      } else {
-                                        setState(() {
-                                          _isLoading = true;
-                                        });
-                                        print(_emailControler.text);
-                                        print(_senhaControler.text);
-                                        var response = await _loginService
-                                            .efetuarLogin(
-                                              _emailControler.text,
-                                              _senhaControler.text,
-                                            );
-                                        if (response.message == null ||
-                                            response.message!.isEmpty) {
-                                          ScaffoldMessenger.of(
-                                            context,
-                                          ).showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                "Login realizado com sucesso!",
-                                              ),
-                                              backgroundColor: Colors.green,
-                                            ),
-                                          );
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => Home(),
-                                            ),
-                                          );
-                                        } else {
-                                          ScaffoldMessenger.of(
-                                            context,
-                                          ).showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                "Erro ao efetuar login: ${response.message}",
-                                              ),
-                                              backgroundColor: Colors.red,
-                                            ),
-                                          );
-                                        }
-                                        await Future.delayed(
-                                          Duration(seconds: 5),
-                                        );
-                                        setState(() {
-                                          _isLoading = false;
-                                        });
                                       }
-                                    },
-                              label: Text("Logar"),
-                              icon: Icon(Icons.login),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
-                                foregroundColor: Colors.white,
-                              ),
+                                      await Future.delayed(
+                                        Duration(seconds: 5),
+                                      );
+                                      setState(() {
+                                        _isLoading = false;
+                                      });
+                                    }
+                                  },
+                            label: Text("Logar"),
+                            icon: Icon(Icons.login),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromARGB(255, 189, 108, 2),
+                              foregroundColor: Colors.white,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
